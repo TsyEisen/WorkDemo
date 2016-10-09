@@ -14,7 +14,8 @@
 #define ScreenW [UIScreen mainScreen].bounds.size.width
 #define ScreenH [UIScreen mainScreen].bounds.size.height
 
-#define ItemW (MIN(ScreenW, ScreenH) - 100.0)/2
+//#define ItemW (MIN(ScreenW, ScreenH) - 100.0)/2
+#define ItemW 122
 
 @interface RPVillageCompareViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *leftTableView;
@@ -132,7 +133,6 @@
 - (RPCompareTopView *)topView {
     if (_topView == nil) {
         _topView = [[RPCompareTopView alloc] initWithFrame:CGRectMake(0, 0, ItemW * self.count, 100) andVillages:@[@1,@2,@3,@4,@5]];
-        _topView.backgroundColor = [UIColor redColor];
     }
     return _topView;
 }

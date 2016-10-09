@@ -7,7 +7,7 @@
 //
 
 #import "RPCompareTopView.h"
-
+#import "UIColor+SYColor.h"
 #define ScreenW [UIScreen mainScreen].bounds.size.width
 #define ScreenH [UIScreen mainScreen].bounds.size.height
 
@@ -20,6 +20,7 @@
 - (instancetype)initWithFrame:(CGRect)frame andVillages:(NSArray *)villages {
     if (self = [super initWithFrame:frame]) {
         self.villages = villages;
+        self.backgroundColor = [UIColor whiteColor];
         [self setUpUI];
     }
     return self;
