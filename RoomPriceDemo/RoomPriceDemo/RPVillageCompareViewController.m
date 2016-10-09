@@ -9,6 +9,7 @@
 #import "RPVillageCompareViewController.h"
 #import "RPCompareTitleCell.h"
 #import "RPCompareTopView.h"
+#import "RPDataDetailCell.h"
 
 #define ScreenW [UIScreen mainScreen].bounds.size.width
 #define ScreenH [UIScreen mainScreen].bounds.size.height
@@ -102,12 +103,18 @@
         cell.compareTitleLabel.text = self.titles[indexPath.row];
         return cell;
     }else {    
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([UITableViewCell class])];
+//        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([UITableViewCell class])];
+//        if (cell == nil) {
+//            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:NSStringFromClass([UITableViewCell class])];
+//        }
+//        cell.textLabel.text = [NSString stringWithFormat:@"%ld",indexPath.row];
+//        return cell;
+        RPDataDetailCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([RPDataDetailCell class])];
         if (cell == nil) {
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:NSStringFromClass([UITableViewCell class])];
+            cell = [RPDataDetailCell cellWithCount:self.count andItemW:ItemW];
         }
-        cell.textLabel.text = [NSString stringWithFormat:@"%ld",indexPath.row];
         return cell;
+        
     }
 }
 
@@ -124,7 +131,7 @@
 
 - (RPCompareTopView *)topView {
     if (_topView == nil) {
-        _topView = [[RPCompareTopView alloc] initWithFrame:CGRectMake(0, 0, ItemW * self.count, 100) andVillages:@[@1,@2,@3]];
+        _topView = [[RPCompareTopView alloc] initWithFrame:CGRectMake(0, 0, ItemW * self.count, 100) andVillages:@[@1,@2,@3,@4,@5]];
         _topView.backgroundColor = [UIColor redColor];
     }
     return _topView;
@@ -139,6 +146,7 @@
         _rightTableView.showsHorizontalScrollIndicator = NO;
         _rightTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         _rightTableView.allowsSelection = NO;
+        _rightTableView.rowHeight = 50;
     }
     return _rightTableView;
 }

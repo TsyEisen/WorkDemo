@@ -28,7 +28,7 @@
 
 - (IBAction)pushToCompareVC {
     RPVillageCompareViewController *compareVC = [[RPVillageCompareViewController alloc] initWithNibName:NSStringFromClass([RPVillageCompareViewController class]) bundle:nil];
-    compareVC.count = 3;
+    compareVC.count = 5;
     [self.navigationController pushViewController:compareVC animated:YES];
 }
 

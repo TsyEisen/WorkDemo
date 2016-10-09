@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9F01159C1DAA80C100BD04DA /* RPDataDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F01159A1DAA80C100BD04DA /* RPDataDetailCell.m */; };
+		9F01159D1DAA80C100BD04DA /* RPDataDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9F01159B1DAA80C100BD04DA /* RPDataDetailCell.xib */; };
+		9F0115A01DAA84BA00BD04DA /* UIColor+SYColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F01159F1DAA84BA00BD04DA /* UIColor+SYColor.m */; };
 		F01DC4421DAA28060096878A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F01DC4411DAA28060096878A /* main.m */; };
 		F01DC4451DAA28060096878A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F01DC4441DAA28060096878A /* AppDelegate.m */; };
 		F01DC4481DAA28060096878A /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F01DC4471DAA28060096878A /* ViewController.m */; };
@@ -21,6 +24,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9F0115991DAA80C100BD04DA /* RPDataDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPDataDetailCell.h; sourceTree = "<group>"; };
+		9F01159A1DAA80C100BD04DA /* RPDataDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPDataDetailCell.m; sourceTree = "<group>"; };
+		9F01159B1DAA80C100BD04DA /* RPDataDetailCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RPDataDetailCell.xib; sourceTree = "<group>"; };
+		9F01159E1DAA84BA00BD04DA /* UIColor+SYColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+SYColor.h"; sourceTree = "<group>"; };
+		9F01159F1DAA84BA00BD04DA /* UIColor+SYColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+SYColor.m"; sourceTree = "<group>"; };
 		F01DC43D1DAA28060096878A /* RoomPriceDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RoomPriceDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F01DC4411DAA28060096878A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		F01DC4431DAA28060096878A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -77,6 +85,11 @@
 				F01DC4471DAA28060096878A /* ViewController.m */,
 				F01DC4571DAA2B8E0096878A /* RPVillageCompareViewController.h */,
 				F01DC4581DAA2B8E0096878A /* RPVillageCompareViewController.m */,
+				9F01159E1DAA84BA00BD04DA /* UIColor+SYColor.h */,
+				9F01159F1DAA84BA00BD04DA /* UIColor+SYColor.m */,
+				9F0115991DAA80C100BD04DA /* RPDataDetailCell.h */,
+				9F01159A1DAA80C100BD04DA /* RPDataDetailCell.m */,
+				9F01159B1DAA80C100BD04DA /* RPDataDetailCell.xib */,
 				F04ACA171DAA4E72005FE6B1 /* RPCompareTopView.h */,
 				F04ACA181DAA4E72005FE6B1 /* RPCompareTopView.m */,
 				F04ACA121DAA489A005FE6B1 /* RPCompareTitleCell.h */,
@@ -159,6 +172,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9F01159D1DAA80C100BD04DA /* RPDataDetailCell.xib in Resources */,
 				F01DC4501DAA28060096878A /* LaunchScreen.storyboard in Resources */,
 				F01DC44D1DAA28060096878A /* Assets.xcassets in Resources */,
 				F01DC44B1DAA28060096878A /* Main.storyboard in Resources */,
@@ -175,11 +189,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				F04ACA191DAA4E72005FE6B1 /* RPCompareTopView.m in Sources */,
+				9F01159C1DAA80C100BD04DA /* RPDataDetailCell.m in Sources */,
 				F04ACA151DAA489A005FE6B1 /* RPCompareTitleCell.m in Sources */,
 				F01DC4481DAA28060096878A /* ViewController.m in Sources */,
 				F01DC4451DAA28060096878A /* AppDelegate.m in Sources */,
 				F01DC45A1DAA2B8E0096878A /* RPVillageCompareViewController.m in Sources */,
 				F01DC4421DAA28060096878A /* main.m in Sources */,
+				9F0115A01DAA84BA00BD04DA /* UIColor+SYColor.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
