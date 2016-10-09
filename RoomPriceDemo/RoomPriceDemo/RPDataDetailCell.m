@@ -33,7 +33,7 @@
         label.text = @"板 楼";
         [cell.contentView addSubview:label];
        
-        UIView *line = [[UIView alloc] initWithFrame:CGRectMake(itemW * (i+1), 0, 0.5, 50)];
+        UIView *line = [[UIView alloc] initWithFrame:CGRectMake(itemW * (i+1)-0.5, 0, 0.5, 50)];
         line.backgroundColor = [UIColor sy_colorWithRGB:0xdddddd];
         [cell.contentView addSubview:line];
     }

@@ -81,7 +81,7 @@
                     <rect key="frame" x="100" y="30" width="275" height="637"/>
                 </scrollView>
             </subviews>
-            <color key="backgroundColor" red="0.93333333333333335" green="0.93333333333333335" blue="0.93333333333333335" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="sVS-te-Xfl" firstAttribute="leading" secondItem="Vb5-Lu-1b6" secondAttribute="trailing" id="1Qt-5J-h6Y"/>
                 <constraint firstAttribute="trailing" secondItem="htb-31-aOT" secondAttribute="trailing" id="5vF-k8-FIJ"/>
