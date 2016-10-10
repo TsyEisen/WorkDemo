@@ -15,6 +15,7 @@
 #define ItemW  (ScreenW - 30)/4
 #define ItemH  (ScreenW - 30)/9
 #define margin 15
+#define AnimationDuration 0.25
 
 @interface RPAreaSetViewController ()
 @property (nonatomic, strong) NSArray *titles;
@@ -44,14 +45,6 @@
 }
 
 - (void)addItems {
-    [self.myCareFrames removeAllObjects];
-    [self.otherFrames removeAllObjects];
-    
-    for (UIView *sub in self.view.subviews) {
-        if (sub.tag > 999) {
-            [sub removeFromSuperview];
-        }
-    }
     
     for (int i = 0; i < self.myCareTitles.count; i++) {
         NSInteger row = i/4;
@@ -78,6 +71,10 @@
         CGRect rect = CGRectMake(x, y, ItemW, ItemH);
         [self.otherFrames addObject:[NSValue valueWithCGRect:rect]];
         RPAreaItem *item = [[RPAreaItem alloc] initWithFrame:rect andTitle:self.otherTitles[i]];
+        __weak typeof(self) weakSelf = self;
+        [item setSelectedAction:^(NSInteger tag) {
+            [weakSelf refreshUIWithTag:tag];
+        }];
         item.tag = 1000 + i;
         item.type = RPAreaItemTypeOther;
         [self.view addSubview:item];
@@ -86,8 +83,37 @@
 
 - (void)refreshUIWithTag:(NSInteger)tag {
     RPAreaItem *item = [self.view viewWithTag:tag];
-    item.tag = self.otherTitles.count + 1000;
-    [self addOtherFrame];
+   
+    if (tag > 999 && tag < 10000) {
+        //其他区域
+        item.tag = self.myCareTitles.count + 10000;
+        item.type = RPAreaItemTypeCare;
+        [self.myCareTitles addObject:self.otherTitles[tag -1000]];
+        [self.otherTitles removeObjectAtIndex:tag - 1000];
+        
+        for (UIView *sub in self.view.subviews) {
+            if(sub.tag>999&&sub.tag < 10000 && sub.tag > tag){
+                sub.tag = sub.tag - 1;
+            }
+        }
+        
+    }else {
+        item.tag = self.otherTitles.count + 1000;
+        item.type = RPAreaItemTypeOther;
+        [self.otherTitles addObject:self.myCareTitles[tag -10000]];
+        [self.myCareTitles removeObjectAtIndex:tag - 10000];
+       
+        
+        for (UIView *sub in self.view.subviews) {
+            if(sub.tag>9999 && sub.tag > tag){
+                sub.tag = sub.tag - 1;
+            }
+        }
+    }
+    [self resetAllFrames];
+    [UIView animateWithDuration:0.25 animations:^{
+        self.otherLabel.frame = CGRectMake(15, self.myCareAreaHeight + 30, 100, 15);
+    }];
     
     for (UIView *sub in self.view.subviews) {
         if (sub.tag >999 && sub.tag < 10000) {
@@ -95,16 +121,12 @@
             NSValue *value = self.otherFrames[sub.tag - 1000];
             [UIView animateWithDuration:0.25 animations:^{
                 sub.frame = [value CGRectValue];
-            }completion:^(BOOL finished) {
-                [self.otherTitles addObject:self.myCareTitles[tag -10000]];
-                [self.myCareTitles removeObjectAtIndex:tag - 10000];
-                [self addItems];
             }];
         }
         
-        if (sub.tag > tag) {
+        if (sub.tag > 9999) {
             //上面的
-            NSValue *value = self.myCareFrames[sub.tag - 10000 - 1];
+            NSValue *value = self.myCareFrames[sub.tag - 10000];
             [UIView animateWithDuration:0.25 animations:^{
                 sub.frame = [value CGRectValue];
             }];
@@ -112,25 +134,53 @@
     }
 }
 
-- (void)addOtherFrame {
-    if(self.otherFrames.count > 0) {
-        NSValue *value = self.otherFrames.lastObject;
-        CGFloat x = 0;
-        CGFloat y = 0;
-        if (self.otherFrames.count%4 == 0) {
-            x = 15;
-            y = 5 + [value CGRectValue].origin.y + ItemH;
-        }else {
-            x = [value CGRectValue].origin.x + ItemW;
-            y = [value CGRectValue].origin.y;
-        }
-        NSValue *newValue = [NSValue valueWithCGRect:CGRectMake(x, y, ItemW, ItemH)];
-        [self.otherFrames addObject:newValue];
-    }else {
-        NSValue *newValue = [NSValue valueWithCGRect:CGRectMake(15, self.myCareAreaHeight + 45, ItemW, ItemH)];
-        [self.otherFrames addObject:newValue];
-    }
+- (void)resetOtherFrames {
     [self.myCareFrames removeLastObject];
+    [self.otherFrames removeAllObjects];
+    for (int i = 0; i < self.otherTitles.count; i++) {
+        NSInteger row = i/4;
+        NSInteger col = i%4;
+        CGFloat x = margin + ItemW * col ;
+        CGFloat y = 5 * (row + 1) + ItemH * row + self.myCareAreaHeight + 45;
+        CGRect rect = CGRectMake(x, y, ItemW, ItemH);
+        [self.otherFrames addObject:[NSValue valueWithCGRect:rect]];
+    }
+}
+
+- (void)resetMyCareFrames {
+    [self.otherFrames removeLastObject];
+    [self.myCareFrames removeAllObjects];
+    for (int i = 0; i < self.myCareTitles.count; i++) {
+        NSInteger row = i/4;
+        NSInteger col = i%4;
+        CGFloat x = margin + ItemW * col ;
+        CGFloat y = 5 * (row + 1) + ItemH * row + 30;
+        CGRect rect = CGRectMake(x, y, ItemW, ItemH);
+        [self.myCareFrames addObject:[NSValue valueWithCGRect:rect]];
+    }
+}
+
+- (void)resetAllFrames {
+    [self.otherFrames removeAllObjects];
+    [self.myCareFrames removeAllObjects];
+    for (int i = 0; i < self.otherTitles.count; i++) {
+        NSInteger row = i/4;
+        NSInteger col = i%4;
+        CGFloat x = margin + ItemW * col ;
+        CGFloat y = 5 * (row + 1) + ItemH * row + self.myCareAreaHeight + 45;
+        CGRect rect = CGRectMake(x, y, ItemW, ItemH);
+        [self.otherFrames addObject:[NSValue valueWithCGRect:rect]];
+        
+    }
+    
+    for (int i = 0; i < self.myCareTitles.count; i++) {
+        NSInteger row = i/4;
+        NSInteger col = i%4;
+        CGFloat x = margin + ItemW * col ;
+        CGFloat y = 5 * (row + 1) + ItemH * row + 30;
+        CGRect rect = CGRectMake(x, y, ItemW, ItemH);
+        [self.myCareFrames addObject:[NSValue valueWithCGRect:rect]];
+    }
 }
 
 - (CGFloat)myCareAreaHeight {
