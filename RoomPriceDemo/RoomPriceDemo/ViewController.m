@@ -8,6 +8,7 @@
 
 #import "ViewController.h"
 #import "RPVillageCompareViewController.h"
+#import "RPAreaSetViewController.h"
 
 @interface ViewController ()
 
@@ -30,6 +31,10 @@
     RPVillageCompareViewController *compareVC = [[RPVillageCompareViewController alloc] initWithNibName:NSStringFromClass([RPVillageCompareViewController class]) bundle:nil];
     compareVC.count = 5;
     [self.navigationController pushViewController:compareVC animated:YES];
+}
+- (IBAction)areaSet {
+    RPAreaSetViewController *areaSetVC = [[RPAreaSetViewController alloc] init];
+    [self.navigationController pushViewController:areaSetVC animated:YES];
 }
 
 @end

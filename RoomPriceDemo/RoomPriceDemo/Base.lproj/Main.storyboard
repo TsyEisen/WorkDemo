@@ -24,10 +24,18 @@
                                     <action selector="pushToCompareVC" destination="BYZ-38-t0r" eventType="touchUpInside" id="S5T-gp-rtH"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JNz-hF-Xwa">
+                                <state key="normal" title="区域设置"/>
+                                <connections>
+                                    <action selector="areaSet" destination="BYZ-38-t0r" eventType="touchUpInside" id="6bB-Jk-8Mz"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="u16-oD-K48" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="bas-6q-UXH"/>
+                            <constraint firstItem="JNz-hF-Xwa" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="d6d-cj-lfn"/>
+                            <constraint firstItem="JNz-hF-Xwa" firstAttribute="top" secondItem="u16-oD-K48" secondAttribute="bottom" constant="30" id="dm0-Kr-6RL"/>
                             <constraint firstItem="u16-oD-K48" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="-25.5" id="l2f-rB-JK4"/>
                         </constraints>
                     </view>
