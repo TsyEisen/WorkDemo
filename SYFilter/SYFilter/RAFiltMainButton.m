@@ -7,6 +7,7 @@
 //
 
 #import "RAFiltMainButton.h"
+#import "UIColor+TAToolkit.h"
 
 @interface RAFiltMainButton()
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
@@ -49,7 +50,7 @@
 - (void)setSelected:(BOOL)selected {
     _selected = selected;
     self.highLight = selected || self.dataManager.selectedParams.length > 0;
-    self.imageView.image = [UIImage imageNamed:selected?@"houseManage_filt_up":@"houseManage_filt_down"];
+    self.imageView.image = [UIImage imageNamed:selected?@"filter_selected":@"filter_unselect"];
 }
 
 - (void)changeStatus {

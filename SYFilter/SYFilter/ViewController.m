@@ -7,8 +7,13 @@
 //
 
 #import "ViewController.h"
+#import "RAFPFilterView.h"
+
+#define ScreenW [UIScreen mainScreen].bounds.size.width
+#define ScreenH [UIScreen mainScreen].bounds.size.height
 
 @interface ViewController ()
+@property(nonatomic,strong)RAFPFilterView *filterView;
 
 @end
 
@@ -16,8 +21,22 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    [self.view addSubview:self.filterView];
 }
 
+- (void)requestData {
+    NSLog(@"请求数据---%@",self.filterView.paramstr);
+}
 
+- (RAFPFilterView *)filterView {
+    if (_filterView == nil) {
+        _filterView = [[RAFPFilterView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 50)];
+        
+            __weak typeof(self) weakSelef = self;
+        [_filterView setCompletion:^{
+            [weakSelef requestData];
+        }];
+    }
+    return _filterView;
+}
 @end
