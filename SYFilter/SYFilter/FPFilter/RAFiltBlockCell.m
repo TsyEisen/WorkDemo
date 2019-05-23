@@ -18,6 +18,8 @@
 
 - (void)setCheck:(BOOL )check {
     _check = check;
+    
+    
     if (check) {
         self.nameLabel.textColor = [UIColor ra_blueColor];
     }else {
